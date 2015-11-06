@@ -1,4 +1,12 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../constants/ActionTypes';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER, MOVE_STAGE } from '../constants/ActionTypes';
+
+export function moveStage() {
+  return {
+    type: MOVE_STAGE,
+    stageNum: 1,
+    newIndex: 2
+  };
+}
 
 export function increment() {
   return {
@@ -14,9 +22,9 @@ export function decrement() {
 
 export function incrementIfOdd() {
   return (dispatch, getState) => {
-    const { counter } = getState();
+    const { counter} = getState();
 
-    if (counter % 2 === 0) {
+    if (counter.counter % 2 === 0) {
       return;
     }
 

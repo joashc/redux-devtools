@@ -20,7 +20,8 @@ module.exports = {
     alias: {
       'redux-devtools/lib': path.join(__dirname, '..', '..', 'src'),
       'redux-devtools': path.join(__dirname, '..', '..', 'src'),
-      'react': path.join(__dirname, 'node_modules', 'react')
+      'react': path.join(__dirname, 'node_modules', 'react'),
+      'react-motion': path.join(__dirname, 'node_modules', 'react-motion'),
     },
     extensions: ['', '.js']
   },

@@ -6,9 +6,9 @@ import * as CounterActions from '../actions/CounterActions';
 
 class CounterApp extends Component {
   render() {
-    const { counter, dispatch } = this.props;
+    const { counter, stages, dispatch } = this.props;
     return (
-      <Counter counter={counter}
+      <Counter counter={counter} stages={stages}
                {...bindActionCreators(CounterActions, dispatch)} />
     );
   }
@@ -16,7 +16,8 @@ class CounterApp extends Component {
 
 function select(state) {
   return {
-    counter: state.counter
+    counter: state.counter.counter,
+    stages: state.counter.stages
   };
 }
 
