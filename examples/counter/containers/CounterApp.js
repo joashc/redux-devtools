@@ -6,19 +6,20 @@ import * as CounterActions from '../actions/CounterActions';
 
 class CounterApp extends Component {
   render() {
-    const { counter, stages, dispatch } = this.props;
+      const { counter, stages, selectedStage, dispatch } = this.props;
     return (
-      <Counter counter={counter} stages={stages}
+            <Counter counter={counter} stages={stages} selectedStage={selectedStage}
                {...bindActionCreators(CounterActions, dispatch)} />
     );
   }
 }
 
 function select(state) {
-  return {
-    counter: state.counter.counter,
-    stages: state.counter.stages
-  };
+    return {
+        counter: state.counter.counter,
+        stages: state.counter.stages,
+        selectedStage: state.counter.selectedStage
+    };
 }
 
 export default connect(select)(CounterApp);

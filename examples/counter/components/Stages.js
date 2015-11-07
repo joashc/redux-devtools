@@ -76,8 +76,8 @@ const Stages = React.createClass({
           const thisPressed = lastPressed === i && isPressed;
           const style = 
              {
-                scale: thisPressed ? spring(1.1, springConfig): spring(1, springConfig),
-                shadow: thisPressed? spring(16, springConfig): spring(1, springConfig),
+                scale: thisPressed ? spring(1.02, springConfig): spring(1, springConfig),
+                shadow: thisPressed? spring(6, springConfig): spring(1, springConfig),
                 y: thisPressed? mouse : order.indexOf(i) > order.indexOf(lastPressed) ? spring((order.indexOf(i) * 100) + 90, springConfig) : spring(order.indexOf(i) * 100, springConfig) ,
                 height: lastPressed === i && !isPressed ? spring(180, springConfig) : spring(90, springConfig)
               };

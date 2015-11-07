@@ -1,4 +1,4 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER, MOVE_STAGE } from '../constants/ActionTypes';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER, MOVE_STAGE, SELECT_STAGE } from '../constants/ActionTypes';
 
 export function moveStage() {
   return {
@@ -6,6 +6,13 @@ export function moveStage() {
     stageNum: 1,
     newIndex: 2
   };
+}
+
+export function selectStage(stageNum) {
+    return {
+        type: SELECT_STAGE,
+        stageNum: stageNum
+    };
 }
 
 export function increment() {
