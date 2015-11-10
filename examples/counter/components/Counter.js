@@ -52,33 +52,9 @@ class Stage extends Component {
             height: isSelected ? spring(2, springConfig) : spring(1, springConfig)
         };
  const data = [
-        {
-            key: 'PassThreshold',
-            values: [
-                {
-                    "label" : "A" ,
-                    "value" : 2
-                }
-            ]
-        },
-        {
-            key: 'Participants',
-            values: [
-                {
-                    "label" : "A" ,
-                    "value" : 5
-                }
-            ]
-        },
-     {
-         key: 'Participants',
-         values: [
-             {
-                 "label" : "A" ,
-                 "value" :10
-             }
-         ]
-     },
+        {key: 'PassThreshold', values: [{"label" : "A" , "value" : 2}]},
+        {key: 'Participants', values: [{"label" : "A" , "value" : 5}]},
+        {key: 'Participants', values: [{"label" : "A" , "value" :10}]},
     ];
         return (
             <Motion style={style}>
@@ -98,15 +74,24 @@ class Stage extends Component {
 
                  <div
                     style={{
-                        transform: `translate3d(-35px, 25px, 0) scale(${scale})`,
+                        transform: `translate3d(-35px, 35px, 0) scale(${scale})`,
                         WebkitTransform: `translate3d(-35px, 25px, 0) scale(${scale})`
                     }}
-                 onClick={() => { console.log('hey'); }}
                  >
+                 <div
+                 style={{
+                     background: "rgba(255,255,255,0);",
+                     position: "absolute",
+                     top:0,
+                     left: 0,
+                     zIndex: isPressed? 100: 2,
+                     height: "100%",
+                     width: "100%"
+                 }}>
+                 </div>
                  <NVD3Chart
                     id="barChart"
                     type="multiBarHorizontalChart"
-                    onClick={( ) => {console.log('hey');}}
                     datum={data}
                     stacked="true"
                     x="label"
