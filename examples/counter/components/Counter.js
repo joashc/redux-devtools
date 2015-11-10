@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {Motion, spring} from 'react-motion';
+import NVD3Chart from 'react-nvd3';
 
 class Stage extends Component {
     static propTypes = {
@@ -21,7 +22,6 @@ class Stage extends Component {
 
     onMouseDown() {
         this.setState({isPressed: true});
-        console.log('down');
     }
 
     onClick() {
@@ -32,7 +32,6 @@ class Stage extends Component {
 
     onMouseUp() {
         this.setState({isPressed: false});
-        console.log('up');
     }
 
     springTernary(bool, trueVal, falseVal) {
@@ -47,11 +46,40 @@ class Stage extends Component {
         const yOffset = selectedStage < i ? 90 : 0;
         const springConfig = [300, 50];
         const style = {
-            scale: isPressed ? spring(1.1, springConfig) : spring(1, springConfig),
+            scale: isSelected ? spring(1.02, springConfig) : isPressed ? spring(1.05, springConfig) : spring(1, springConfig),
             y: spring(stages.indexOf(i) * 100 + yOffset, springConfig),
-            shadow: isPressed ? spring(16, springConfig) : spring(1, springConfig),
+            shadow: isSelected ? spring(3, springConfig) : isPressed ? spring(6, springConfig) : spring(1, springConfig),
             height: isSelected ? spring(2, springConfig) : spring(1, springConfig)
         };
+ const data = [
+        {
+            key: 'PassThreshold',
+            values: [
+                {
+                    "label" : "A" ,
+                    "value" : 2
+                }
+            ]
+        },
+        {
+            key: 'Participants',
+            values: [
+                {
+                    "label" : "A" ,
+                    "value" : 5
+                }
+            ]
+        },
+     {
+         key: 'Participants',
+         values: [
+             {
+                 "label" : "A" ,
+                 "value" :10
+             }
+         ]
+     },
+    ];
         return (
             <Motion style={style}>
                 {({y, scale, shadow, height}) =>
@@ -65,9 +93,34 @@ class Stage extends Component {
                     WebkitTransform: `translate3d(0, ${y}px, 0) scale(${scale})`,
                     boxShadow: `rgba(0, 0, 0, 0.2) 0px ${shadow}px ${2 * shadow}px 0px`,
                     height: `${90 * height}px`,
-                    zIndex: isSelected ? 99 : 1
+                    zIndex: isPressed ? 99 : 1
                 }}>
-                {stages.indexOf(i) + 1} - {i}
+
+                 <div
+                    style={{
+                        transform: `translate3d(-35px, 25px, 0) scale(${scale})`,
+                        WebkitTransform: `translate3d(-35px, 25px, 0) scale(${scale})`
+                    }}
+                 onClick={() => { console.log('hey'); }}
+                 >
+                 <NVD3Chart
+                    id="barChart"
+                    type="multiBarHorizontalChart"
+                    onClick={( ) => {console.log('hey');}}
+                    datum={data}
+                    stacked="true"
+                    x="label"
+                    height="30px"
+                    showValues={false}
+                    showXAxis={false}
+                    showYAxis={false}
+                    showLegend={false}
+                    showControls={false}
+                    y="value"
+                    style={{
+                        zIndex: isPressed ? 99 : 1
+                    }}/>
+                 </div>
                 </div>
             }
             </Motion>
